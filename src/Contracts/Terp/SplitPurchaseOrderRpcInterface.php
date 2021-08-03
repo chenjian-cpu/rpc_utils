@@ -9,5 +9,5 @@ namespace KkErpService\RpcUtils\Contracts\Terp;
 
 interface SplitPurchaseOrderRpcInterface
 {
-    public function getPushSplits();
+    public function getPushSplits(int $limit = 1);
 }
