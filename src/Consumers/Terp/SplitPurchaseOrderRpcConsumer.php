@@ -8,7 +8,7 @@
 namespace KkErpService\RpcUtils\Consumers\Terp;
 
 use KkErpService\RpcUtils\Consumers\AbstractConsumer;
-use KkErpService\RpcUtils\Interfaces\Terp\SplitPurchaseOrderRpcInterface;
+use KkErpService\RpcUtils\Contracts\Terp\SplitPurchaseOrderRpcInterface;
 
 class SplitPurchaseOrderRpcConsumer extends AbstractConsumer implements SplitPurchaseOrderRpcInterface
 {
