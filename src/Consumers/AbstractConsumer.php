@@ -11,13 +11,10 @@ use Hyperf\RpcClient\AbstractServiceClient;
 
 class AbstractConsumer extends AbstractServiceClient
 {
-    protected $protocol = 'jsonrpc';
-
     protected function request(string $method, array $params, ?string $id = null)
     {
-        // todo 记录请求
+        // todo 自定义操作
 
         return $this->__request($method, $params, $id);
-        // todo 处理返回异常
     }
 }
