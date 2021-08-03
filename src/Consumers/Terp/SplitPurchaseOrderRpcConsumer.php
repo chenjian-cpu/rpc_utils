@@ -14,7 +14,7 @@ class SplitPurchaseOrderRpcConsumer extends AbstractConsumer implements SplitPur
 {
     protected $serviceName = 'SplitPurchaseOrderRpc';
 
-    public function getPushSplits()
+    public function getPushSplits(int $limit = 1)
     {
         return $this->request(__FUNCTION__, func_get_args());
     }
