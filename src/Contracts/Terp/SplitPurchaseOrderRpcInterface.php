@@ -5,7 +5,7 @@
  * @link     http://terp.kkguan.com
  * @license  http://192.168.30.119:10080/KKERP/erp
  */
-namespace KkErpService\RpcUtils\Interfaces\Terp;
+namespace KkErpService\RpcUtils\Contracts\Terp;
 
 interface SplitPurchaseOrderRpcInterface
 {
