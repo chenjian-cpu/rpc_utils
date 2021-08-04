@@ -47,40 +47,34 @@ class AbstractConsumer extends AbstractServiceClient
     {
         $startTime = microtime(true);
 
-        $exception = null;
         try {
-            $content = $this->__request($method, $params, $this->_getId());
+            return $this->__request($method, $params, $this->_getId());
         } catch (\Throwable $throwable) {
-            $exception = $throwable;
-            $content = [
-                'code' => $throwable->getCode(),
-                'message' => '[rpc请求异常]' . $throwable->getMessage(),
-            ];
+            throw new RequestException($throwable->getMessage());
+        } finally {
+            if (isset($throwable)) {
+                $content = [
+                    'code' => $throwable->getCode(),
+                    'message' => '[rpc请求异常]' . $throwable->getMessage(),
+                ];
+            }
+            $this->log($method, $params, $content, $startTime);
         }
-
-        $this->log($method, $params, $content, $startTime);
-
-        if (!is_null($exception)) {
-            throw new RequestException($exception->getMessage());
-        }
-
-        return $content;
     }
 
     /**
      * 记录日志.
      */
-    protected function log(string $method, $args, $content, $startTime = null): bool
+    protected function log(string $method, $args, $content, float $startTime): bool
     {
         if (!is_string($args)) {
             $args = json_encode($args, JSON_UNESCAPED_UNICODE);
         }
         if (!is_string($content)) {
-            unset($content['exception']);
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 
-        $message = sprintf('[RPC日志] [本次耗时]%s [RPC方法]%s [请求参数]%s [响应结果]%s', $this->_getElapsedTime($startTime), $method, $args, $content);
+        $message = sprintf('[RPC请求日志] [本次耗时]%s [RPC方法]%s [请求参数]%s [响应结果]%s', get_elapsed_time($startTime), $method, $args, $content);
 
         if (Context::has('request_guid')) {
             $message = '[' . Context::get('request_guid') . '] ' . $message;
@@ -104,11 +98,6 @@ class AbstractConsumer extends AbstractServiceClient
     {
         $className = class_basename(get_called_class());
         $this->serviceName = str_replace('Consumer', '', $className);
-    }
-
-    private function _getElapsedTime($start): float
-    {
-        return round((microtime(true) - $start) * 1000, 2);
     }
 
     private function _getId(): ?string
