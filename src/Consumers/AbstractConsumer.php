@@ -48,7 +48,7 @@ class AbstractConsumer extends AbstractServiceClient
         $startTime = microtime(true);
 
         try {
-            return $this->__request($method, $params, $this->_getId());
+            $content = $this->__request($method, $params, $this->_getId());
         } catch (\Throwable $throwable) {
             throw new RequestException($throwable->getMessage());
         } finally {
@@ -60,6 +60,16 @@ class AbstractConsumer extends AbstractServiceClient
             }
             $this->log($method, $params, $content, $startTime);
         }
+        return $this->parseContent($content);
+    }
+
+    protected function parseContent($content)
+    {
+        if (isset($content['code'])) {
+            throw new RequestException($content['message'], $content['code']);
+        }
+
+        return $content;
     }
 
     /**

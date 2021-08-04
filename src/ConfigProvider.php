@@ -30,7 +30,7 @@ class ConfigProvider
             ],
             'middlewares' => [
                 'jsonrpc-http' => [
-                    JsonRpcHttpMiddleware::class
+                    JsonRpcHttpMiddleware::class,
                 ],
             ],
         ];
