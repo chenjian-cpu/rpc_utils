@@ -66,7 +66,7 @@ class AbstractConsumer extends AbstractServiceClient
     protected function parseContent($content)
     {
         if (isset($content['code'])) {
-            throw new RequestException($content['message'], $content['code']);
+            throw new RequestException($content['message'] ?? '', $content['code']);
         }
 
         return $content;
