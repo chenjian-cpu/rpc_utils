@@ -8,14 +8,7 @@
 namespace KkErpService\RpcUtils\Consumers\Terp;
 
 use KkErpService\RpcUtils\Consumers\AbstractConsumer;
-use KkErpService\RpcUtils\Contracts\Terp\SplitPurchaseOrderRpcInterface;
 
-class SplitPurchaseOrderRpcConsumer extends AbstractConsumer implements SplitPurchaseOrderRpcInterface
+class SplitPurchaseOrderRpcConsumer extends AbstractConsumer
 {
-    protected $serviceName = 'SplitPurchaseOrderRpc';
-
-    public function getPushSplits()
-    {
-        return $this->request(__FUNCTION__, func_get_args());
-    }
 }
