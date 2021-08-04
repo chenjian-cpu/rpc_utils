@@ -39,7 +39,6 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
         try {
             $response = $handler->handle($request);
             $responseContent = $response->getBody()->getContents();
-            $response->getBody()->rewind();
             return $response;
         } catch (\Throwable $throwable) {
             throw $throwable;
@@ -68,7 +67,7 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 
-        $message = sprintf('[RPC响应日志] [本次耗时]%s [请求id]%s [请求参数]%s [响应结果]%s', get_elapsed_time($startTime), $args, $ip, $content);
+        $message = sprintf('[RPC响应日志] [本次耗时]%s [请求ip]%s [请求参数]%s [响应结果]%s', get_elapsed_time($startTime), $ip, $args, $content);
 
         $this->logger->info($message);
 
