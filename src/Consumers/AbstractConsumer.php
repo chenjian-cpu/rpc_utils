@@ -10,6 +10,8 @@ namespace KkErpService\RpcUtils\Consumers;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\RpcClient\AbstractServiceClient;
 use Hyperf\Utils\Context;
+use KkErpService\RpcUtils\Kernel\Exceptions\InvalidArgumentException;
+use KkErpService\RpcUtils\Kernel\Exceptions\RequestException;
 use Psr\Container\ContainerInterface;
 
 class AbstractConsumer extends AbstractServiceClient
@@ -17,22 +19,50 @@ class AbstractConsumer extends AbstractServiceClient
     /**
      * @var StdoutLoggerInterface
      */
-    private $logger;
+    protected $logger;
 
-    public function __construct(StdoutLoggerInterface $logger, ContainerInterface $container)
+    /**
+     * @var string
+     */
+    protected $interface;
+
+    public function __construct(ContainerInterface $container)
     {
-        $this->logger = $logger;
+        $this->logger = $container->get(StdoutLoggerInterface::class);
+        empty($this->serviceName) && $this->_smartSetServiceName();
+        empty($this->interface) && $this->_smartSetInterface();
         parent::__construct($container);
+    }
+
+    public function __call($name, $arguments)
+    {
+        if (!method_exists($this->interface, $name)) {
+            throw new InvalidArgumentException("{$name} not found in {$this->interface}");
+        }
+
+        return $this->request($name, $arguments);
     }
 
     protected function request(string $method, array $params)
     {
-        // 记录开始时间
         $startTime = microtime(true);
 
-        $content = $this->__request($method, $params, $this->_getId());
+        $exception = null;
+        try {
+            $content = $this->__request($method, $params, $this->_getId());
+        } catch (\Throwable $throwable) {
+            $exception = $throwable;
+            $content = [
+                'code' => $throwable->getCode(),
+                'message' => '[rpc请求异常]' . $throwable->getMessage(),
+            ];
+        }
 
         $this->log($method, $params, $content, $startTime);
+
+        if (!is_null($exception)) {
+            throw new RequestException($exception->getMessage());
+        }
 
         return $content;
     }
@@ -42,10 +72,11 @@ class AbstractConsumer extends AbstractServiceClient
      */
     protected function log(string $method, $args, $content, $startTime = null): bool
     {
-        if (! is_string($args)) {
+        if (!is_string($args)) {
             $args = json_encode($args, JSON_UNESCAPED_UNICODE);
         }
-        if (! is_string($content)) {
+        if (!is_string($content)) {
+            unset($content['exception']);
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 
@@ -58,6 +89,21 @@ class AbstractConsumer extends AbstractServiceClient
         $this->logger->info($message);
 
         return true;
+    }
+
+    private function _smartSetInterface()
+    {
+        $classPath = get_called_class();
+        $classPath = str_replace('Consumers', 'Contracts', $classPath);
+        $classPath = str_replace('Consumer', 'Interface', $classPath);
+
+        $this->interface = $classPath;
+    }
+
+    private function _smartSetServiceName()
+    {
+        $className = class_basename(get_called_class());
+        $this->serviceName = str_replace('Consumer', '', $className);
     }
 
     private function _getElapsedTime($start): float
