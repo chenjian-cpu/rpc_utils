@@ -4,6 +4,7 @@
     "license": "MIT",
     "require": {
         "php": ">=7.3",
+        "ext-json": "*",
         "hyperf/contract": "^2.1",
         "hyperf/json-rpc": "^2.1",
         "hyperf/rpc-client": "^2.1",
