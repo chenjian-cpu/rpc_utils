@@ -1,28 +1,47 @@
 <h1 align="center"> rpc-utils </h1>
 
-<p align="center"> .</p>
-
-
-## Installing
+## 安装
 
 ```shell
 $ composer require kk-erp-service/rpc-utils -vvv
 ```
 
-## Usage
+## 说明
 
-TODO
+- 协议：jsonrpc-http
 
-## Contributing
+## 使用方式
 
-You can contribute in one of three ways:
+### 服务提供者
 
-1. File bug reports using the [issue tracker](https://github.com/kk-erp-service/rpc-utils/issues).
-2. Answer questions or fix bugs on the [issue tracker](https://github.com/kk-erp-service/rpc-utils/issues).
-3. Contribute new features or update the wiki.
+> 采用注解方式
 
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
+```php
+/**
+ * Class SplitPurchaseOrderRpc.
+ *
+ * @RpcService(name="SplitPurchaseOrderRpc")
+ */
+class SplitPurchaseOrderRpc implements SplitPurchaseOrderRpcInterface
+{
+}
+```
 
-## License
+### 服务消费者
 
-MIT
+> 采用自动生成代理类的方式，即仅需配置services.php即可
+
+如
+```php
+return [
+    'consumers' => [
+        [
+            'name' => 'SplitPurchaseOrderRpc',
+            'service' => \KkErpService\RpcUtils\Contracts\Terp\SplitPurchaseOrderRpcInterface::class,
+            'nodes' => [
+                ['host' => '172.17.0.4', 'port' => 9502],
+            ],
+        ]
+    ],
+];
+```
