@@ -11,7 +11,6 @@ use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\Di\Aop\AbstractAspect;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
 use Hyperf\Utils\Context;
-use KkErpService\RpcUtils\Kernel\Exceptions\RequestException;
 use Psr\Container\ContainerInterface;
 
 class RpcRequestAspect extends AbstractAspect
@@ -48,15 +47,6 @@ class RpcRequestAspect extends AbstractAspect
             }
             [$method, $params, $id] = $proceedingJoinPoint->getArguments();
             $this->log($method, $params, $content, $startTime);
-        }
-
-        return $content;
-    }
-
-    protected function parseContent($content)
-    {
-        if (isset($content['code'])) {
-            throw new RequestException($content['message'] ?? '', $content['code']);
         }
 
         return $content;

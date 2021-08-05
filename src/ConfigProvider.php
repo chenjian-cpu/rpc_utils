@@ -29,7 +29,7 @@ class ConfigProvider
                     JsonRpcHttpMiddleware::class,
                 ],
             ],
-            'aspect' => [
+            'aspects' => [
                 RpcRequestAspect::class,
             ],
         ];
