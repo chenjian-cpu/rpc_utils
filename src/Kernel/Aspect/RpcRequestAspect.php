@@ -5,52 +5,40 @@
  * @link     http://terp.kkguan.com
  * @license  http://192.168.30.119:10080/KKERP/erp
  */
-namespace KkErpService\RpcUtils\Consumers;
+namespace KkErpService\RpcUtils\Kernel\Aspect;
 
 use Hyperf\Contract\StdoutLoggerInterface;
-use Hyperf\RpcClient\AbstractServiceClient;
+use Hyperf\Di\Aop\AbstractAspect;
+use Hyperf\Di\Aop\ProceedingJoinPoint;
 use Hyperf\Utils\Context;
-use KkErpService\RpcUtils\Kernel\Exceptions\InvalidArgumentException;
 use KkErpService\RpcUtils\Kernel\Exceptions\RequestException;
 use Psr\Container\ContainerInterface;
 
-class AbstractConsumer extends AbstractServiceClient
+class RpcRequestAspect extends AbstractAspect
 {
+    public $classes = [
+        'Hyperf\RpcClient\ServiceClient::__request',
+    ];
+
     /**
      * @var StdoutLoggerInterface
      */
     protected $logger;
 
-    /**
-     * @var string
-     */
-    protected $interface;
-
     public function __construct(ContainerInterface $container)
     {
         $this->logger = $container->get(StdoutLoggerInterface::class);
-        empty($this->serviceName) && $this->_smartSetServiceName();
-        empty($this->interface) && $this->_smartSetInterface();
-        parent::__construct($container);
     }
 
-    public function __call($name, $arguments)
-    {
-        if (!method_exists($this->interface, $name)) {
-            throw new InvalidArgumentException("{$name} not found in {$this->interface}");
-        }
-
-        return $this->request($name, $arguments);
-    }
-
-    protected function request(string $method, array $params)
+    public function process(ProceedingJoinPoint $proceedingJoinPoint)
     {
         $startTime = microtime(true);
 
+        $proceedingJoinPoint->arguments['keys']['id'] = $this->_getId();
         try {
-            return $this->__request($method, $params, $this->_getId());
+            $content = $proceedingJoinPoint->process();
         } catch (\Throwable $throwable) {
-            throw new RequestException($throwable->getMessage());
+            throw new \Exception($throwable->getMessage());
         } finally {
             if (isset($throwable)) {
                 $content = [
@@ -58,8 +46,20 @@ class AbstractConsumer extends AbstractServiceClient
                     'message' => '[rpc请求异常]' . $throwable->getMessage(),
                 ];
             }
+            [$method, $params, $id] = $proceedingJoinPoint->getArguments();
             $this->log($method, $params, $content, $startTime);
         }
+
+        return $content;
+    }
+
+    protected function parseContent($content)
+    {
+        if (isset($content['code'])) {
+            throw new RequestException($content['message'] ?? '', $content['code']);
+        }
+
+        return $content;
     }
 
     /**
@@ -83,21 +83,6 @@ class AbstractConsumer extends AbstractServiceClient
         $this->logger->info($message);
 
         return true;
-    }
-
-    private function _smartSetInterface()
-    {
-        $classPath = get_called_class();
-        $classPath = str_replace('Consumers', 'Contracts', $classPath);
-        $classPath = str_replace('Consumer', 'Interface', $classPath);
-
-        $this->interface = $classPath;
-    }
-
-    private function _smartSetServiceName()
-    {
-        $className = class_basename(get_called_class());
-        $this->serviceName = str_replace('Consumer', '', $className);
     }
 
     private function _getId(): ?string
