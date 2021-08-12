@@ -23,5 +23,5 @@ interface WmsOrderRecordRpcInterface
      * @param string $orderNo 单号
      * @param array  $select  查询字段
      */
-    public function getInfoByOrderNo(string $orderNo = '', array $select = []): array;
+    public function getInfoByOrderNo(string $orderNo, array $select = []): array;
 }

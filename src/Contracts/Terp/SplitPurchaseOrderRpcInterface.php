@@ -27,7 +27,7 @@ interface SplitPurchaseOrderRpcInterface
      * @param string $md5    md5
      * @param array  $select 查询字段
      */
-    public function getInfoByMd5(string $md5 = '', array $select = []): array;
+    public function getInfoByMd5(string $md5, array $select = []): array;
 
     public function getPushSplitByIdTest(TestParameter $testParameter): TestDTO;
 }
