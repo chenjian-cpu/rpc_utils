@@ -15,7 +15,8 @@ interface WmsOrderRecordRpcInterface
      * @param string $orderNo   单号
      * @param bool   $isPushK3  是否推送K3
      * @param int    $limit     限制条数
+     * @param array  $select    查询字段
      * @param array  $ignoreIds 忽略的id
      */
-    public function getPushOutStocks(string $orderNo = '', bool $isPushK3 = false, int $limit = 0, array $ignoreIds = []): array;
+    public function getPushOutStocks(string $orderNo = '', bool $isPushK3 = false, int $limit = 0, array $select = [], array $ignoreIds = []): array;
 }
