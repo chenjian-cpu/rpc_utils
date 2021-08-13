@@ -60,6 +60,7 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
      */
     protected function log($args, $content, string $ip, float $startTime): bool
     {
+        $id = $args['id'] ?? '';
         if (!is_string($args)) {
             $args = json_encode($args, JSON_UNESCAPED_UNICODE);
         }
@@ -67,7 +68,7 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 
-        $message = sprintf('[RPC响应日志] [本次耗时]%s [请求ip]%s [请求参数]%s [响应结果]%s', get_elapsed_time($startTime), $ip, $args, $content);
+        $message = sprintf('[%s] [RPC响应日志] [本次耗时]%s [请求ip]%s [请求参数]%s [响应结果]%s', $id, get_elapsed_time($startTime), $ip, $args, $content);
 
         $this->logger->info($message);
 
