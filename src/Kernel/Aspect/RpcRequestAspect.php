@@ -11,6 +11,7 @@ use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\Di\Aop\AbstractAspect;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
 use Hyperf\Utils\Context;
+use KkErpService\RpcUtils\Kernel\Constants\ContextId;
 use Psr\Container\ContainerInterface;
 
 class RpcRequestAspect extends AbstractAspect
@@ -46,7 +47,7 @@ class RpcRequestAspect extends AbstractAspect
                 ];
             }
             [$method, $params, $id] = $proceedingJoinPoint->getArguments();
-            $this->log($method, $params, $content, $startTime);
+            $this->log($id, $method, $params, $content, $startTime);
         }
 
         return $content;
@@ -55,7 +56,7 @@ class RpcRequestAspect extends AbstractAspect
     /**
      * 记录日志.
      */
-    protected function log(string $method, $args, $content, float $startTime): bool
+    protected function log(string $id, string $method, $args, $content, float $startTime): bool
     {
         if (!is_string($args)) {
             $args = json_encode($args, JSON_UNESCAPED_UNICODE);
@@ -64,11 +65,7 @@ class RpcRequestAspect extends AbstractAspect
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 
-        $message = sprintf('[RPC请求日志] [本次耗时]%s [RPC方法]%s [请求参数]%s [响应结果]%s', get_elapsed_time($startTime), $method, $args, $content);
-
-        if (Context::has('request_guid')) {
-            $message = '[' . Context::get('request_guid') . '] ' . $message;
-        }
+        $message = sprintf('[%s] [RPC请求日志] [本次耗时]%s [RPC方法]%s [请求参数]%s [响应结果]%s', $id, get_elapsed_time($startTime), $method, $args, $content);
 
         $this->logger->info($message);
 
@@ -77,6 +74,19 @@ class RpcRequestAspect extends AbstractAspect
 
     private function _getId(): ?string
     {
-        return Context::get('request_guid');
+        if (Context::has(ContextId::RPC_REQUEST_ID)) {
+            return Context::get('request_guid');
+        }
+
+        $id = $this->_setId();
+
+        Context::set(ContextId::RPC_REQUEST_ID, $id);
+
+        return $id;
+    }
+
+    private function _setId(): string
+    {
+        return uniqid('rpc_');
     }
 }
