@@ -43,7 +43,7 @@ class RpcRequestAspect extends AbstractAspect
             if (isset($throwable)) {
                 $content = [
                     'code' => $throwable->getCode(),
-                    'message' => '[rpc请求异常]' . $throwable->getMessage(),
+                    'message' => '[rpc_request_error]' . $throwable->getMessage(),
                 ];
             }
             [$method, $params, $id] = $proceedingJoinPoint->getArguments();
@@ -75,7 +75,7 @@ class RpcRequestAspect extends AbstractAspect
     private function _getId(): ?string
     {
         if (Context::has(ContextId::RPC_REQUEST_ID)) {
-            return Context::get('request_guid');
+            return Context::get(ContextId::RPC_REQUEST_ID);
         }
 
         $id = $this->_setId();
