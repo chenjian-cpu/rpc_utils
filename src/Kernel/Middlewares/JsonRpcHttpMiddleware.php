@@ -46,7 +46,7 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
             if (isset($throwable)) {
                 $responseContent = [
                     'code' => $throwable->getCode(),
-                    'message' => '[rpc响应异常]' . $throwable->getMessage(),
+                    'message' => '[rpc_response_error]' . $throwable->getMessage(),
                 ];
             }
             $requestContent = $request->getAttribute('data');

@@ -43,7 +43,7 @@ class RpcRequestAspect extends AbstractAspect
             if (isset($throwable)) {
                 $content = [
                     'code' => $throwable->getCode(),
-                    'message' => '[rpc请求异常]' . $throwable->getMessage(),
+                    'message' => '[rpc_request_error]' . $throwable->getMessage(),
                 ];
             }
             [$method, $params, $id] = $proceedingJoinPoint->getArguments();
