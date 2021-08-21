@@ -21,6 +21,11 @@ abstract class AbstractDTO
         }
     }
 
+    public static function make(array $properties = [])
+    {
+        return new static($properties);
+    }
+
     public function __set($name, $value)
     {
         $name = string_to_hump($name);

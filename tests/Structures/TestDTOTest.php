@@ -29,6 +29,21 @@ class TestDTOTest extends TestCase
         $this->assertEquals('单号', $dto->orderNo);
     }
 
+    public function testMake()
+    {
+        $dto = TestDTO::make([
+            'id' => 1
+        ]);
+
+        $this->assertEquals(1, $dto->id);
+
+        $dto->addProperties([
+            'id' => 2
+        ]);
+
+        $this->assertEquals(2, $dto->id);
+    }
+
     public function testSet()
     {
         $dto = $this->_getDto();
