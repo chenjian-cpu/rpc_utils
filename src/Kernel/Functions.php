@@ -1,11 +1,15 @@
 <?php
+
+declare(strict_types=1);
 /**
- * This file is part of Terp.
+ * This file is part of the KKGUAN Service.
  *
- * @link     http://terp.kkguan.com
- * @license  http://192.168.30.119:10080/KKERP/erp
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
-if (!function_exists('get_elapsed_time')) {
+if (! function_exists('get_elapsed_time')) {
     /**
      * 计算耗时.
      * @param float $start 开始时间
@@ -16,7 +20,7 @@ if (!function_exists('get_elapsed_time')) {
     }
 }
 
-if (!function_exists('string_to_hump')) {
+if (! function_exists('string_to_hump')) {
     /**
      * 下划线转成驼峰命名,默认小驼峰.
      * @param string $string  要转换的字符串
@@ -33,7 +37,7 @@ if (!function_exists('string_to_hump')) {
     }
 }
 
-if (!function_exists('string_to_line')) {
+if (! function_exists('string_to_line')) {
     /**
      * 驼峰命名转下划线
      * @param string $string 要转换的字符串
@@ -48,7 +52,7 @@ if (!function_exists('string_to_line')) {
     }
 }
 
-if (!function_exists('array_key_to_line')) {
+if (! function_exists('array_key_to_line')) {
     /**
      * 转换数组key成下划线
      * @param array $array 要转换的数组
@@ -68,7 +72,7 @@ if (!function_exists('array_key_to_line')) {
     }
 }
 
-if (!function_exists('array_key_to_hump')) {
+if (! function_exists('array_key_to_hump')) {
     /**
      * 转换数组key成驼峰.
      * @param array $array 要转换的数组

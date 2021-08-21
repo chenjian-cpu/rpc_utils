@@ -9,22 +9,22 @@ declare(strict_types=1);
  * 本文件属于KK馆版权所有，泄漏必究。
  * This file belong to KKGUAN, all rights reserved.
  */
-namespace KkErpService\RpcUtils\Kernel\Constants;
+namespace KkErpService\RpcUtils\Constants\Terp\Order\SplitOrder;
 
-class ExceptionCode
+class Status
 {
     /**
-     * rpc请求异常.
+     * 作废
      */
-    const REQUEST = 2000;
+    const INVALID = -1;
 
     /**
-     * 无效的参数.
+     * 未推送
      */
-    const INVALID_ARG = 2001;
+    const PENDING = 0;
 
     /**
-     * 系统未定义错误.
+     * 推送成功
      */
-    const ERROR = 9999;
+    const FINISHED = 1;
 }

@@ -1,10 +1,12 @@
 <?php
 
 $header = <<<'EOF'
-This file is part of Terp.
+This file is part of the KKGUAN Service.
 
-@link     http://terp.kkguan.com
-@license  http://192.168.30.119:10080/KKERP/erp
+(c) KKGUAN Service <>
+
+本文件属于KK馆版权所有，泄漏必究。
+This file belong to KKGUAN, all rights reserved.
 EOF;
 
 return PhpCsFixer\Config::create()
@@ -37,9 +39,24 @@ return PhpCsFixer\Config::create()
                 'declare',
             ],
         ],
+        'binary_operator_spaces' => [
+            'operators' => [
+                '=>' => 'align',
+            ],
+        ],
         'general_phpdoc_annotation_remove' => [
             'annotations' => [
                 'author',
+            ],
+        ],
+        'ordered_imports' => [
+            'imports_order' => [
+                'class', 'function', 'const',
+            ],
+            'sort_algorithm' => 'alpha',
+        ],
+        'single_line_comment_style' => [
+            'comment_types' => [
             ],
         ],
         'list_syntax' => [
@@ -58,13 +75,13 @@ return PhpCsFixer\Config::create()
         ],
         'class_attributes_separation'       => true,
         'combine_consecutive_unsets'        => true,
-        'declare_strict_types'              => false,
+        'declare_strict_types'              => true,
         'linebreak_after_opening_tag'       => true,
         'lowercase_constants'               => true,
         'lowercase_static_reference'        => true,
         'no_useless_else'                   => true,
         'no_unused_imports'                 => true,
-        'not_operator_with_successor_space' => false,
+        'not_operator_with_successor_space' => true,
         'not_operator_with_space'           => false,
         'ordered_class_elements'            => true,
         'ordered_imports'                   => true,
@@ -72,6 +89,7 @@ return PhpCsFixer\Config::create()
         'phpdoc_separation'                 => false,
         'single_quote'                      => true,
         'standardize_not_equals'            => true,
+        'multiline_comment_opening_closing' => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

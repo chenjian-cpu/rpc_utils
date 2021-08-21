@@ -1,9 +1,13 @@
 <?php
+
+declare(strict_types=1);
 /**
- * This file is part of Terp.
+ * This file is part of the KKGUAN Service.
  *
- * @link     http://terp.kkguan.com
- * @license  http://192.168.30.119:10080/KKERP/erp
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
 namespace KkErpService\RpcUtils\Structures;
 
@@ -16,7 +20,7 @@ abstract class AbstractDTO
 
     public function __construct(array $properties = [])
     {
-        if (!empty($properties)) {
+        if (! empty($properties)) {
             $this->addProperties(array_key_to_hump($properties));
         }
     }
@@ -36,7 +40,7 @@ abstract class AbstractDTO
 
     public function __isset($name): bool
     {
-        return !is_null($this->{$name});
+        return ! is_null($this->{$name});
     }
 
     public function __unset($name)
@@ -60,7 +64,7 @@ abstract class AbstractDTO
             if (is_numeric($name)) {
                 continue;
             }
-            !is_null($value) && $this->{$name} = $value;
+            ! is_null($value) && $this->{$name} = $value;
         }
     }
 
@@ -69,7 +73,7 @@ abstract class AbstractDTO
         $class = new ReflectionClass($this);
         $attributes = [];
         foreach ($class->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
-            if (!$property->isStatic()) {
+            if (! $property->isStatic()) {
                 $attributes[] = $property->getName();
             }
         }

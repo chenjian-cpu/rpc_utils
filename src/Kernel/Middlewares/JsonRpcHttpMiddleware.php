@@ -1,9 +1,13 @@
 <?php
+
+declare(strict_types=1);
 /**
- * This file is part of Terp.
+ * This file is part of the KKGUAN Service.
  *
- * @link     http://terp.kkguan.com
- * @license  http://192.168.30.119:10080/KKERP/erp
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
 namespace KkErpService\RpcUtils\Kernel\Middlewares;
 
@@ -45,7 +49,7 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
         } finally {
             if (isset($throwable)) {
                 $responseContent = [
-                    'code' => $throwable->getCode(),
+                    'code'    => $throwable->getCode(),
                     'message' => '[rpc_response_error]' . $throwable->getMessage(),
                 ];
             }
@@ -61,10 +65,10 @@ class JsonRpcHttpMiddleware implements MiddlewareInterface
     protected function log($args, $content, string $ip, float $startTime): bool
     {
         $id = $args['id'] ?? '';
-        if (!is_string($args)) {
+        if (! is_string($args)) {
             $args = json_encode($args, JSON_UNESCAPED_UNICODE);
         }
-        if (!is_string($content)) {
+        if (! is_string($content)) {
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 

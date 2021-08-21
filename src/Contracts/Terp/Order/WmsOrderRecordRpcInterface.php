@@ -11,13 +11,13 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Contracts\Terp\Order;
 
-use KkErpService\RpcUtils\Structures\Request\Terp\Order\SplitOrder\SearchRequestDTO;
-use KkErpService\RpcUtils\Structures\Response\Terp\Order\SplitOrder\SearchResponseDTO;
+use KkErpService\RpcUtils\Structures\Request\Terp\Order\WmsOrderRecord\SearchRequestDTO;
+use KkErpService\RpcUtils\Structures\Response\Terp\Order\WmsOrderRecord\SearchResponseDTO;
 
 /**
- * 拆单接口.
+ * WMS订单接口.
  */
-interface SplitOrderRpcInterface
+interface WmsOrderRecordRpcInterface
 {
     public function search(SearchRequestDTO $searchRequestDTO): SearchResponseDTO;
 }

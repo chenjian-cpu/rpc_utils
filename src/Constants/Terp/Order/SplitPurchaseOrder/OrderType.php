@@ -9,9 +9,8 @@ declare(strict_types=1);
  * 本文件属于KK馆版权所有，泄漏必究。
  * This file belong to KKGUAN, all rights reserved.
  */
-namespace KkErpService\RpcUtils\Kernel\Constants;
+namespace KkErpService\RpcUtils\Constants\Terp\Order\SplitPurchaseOrder;
 
-class ContextId
+class OrderType
 {
-    const RPC_REQUEST_ID = 'rpc_request_id';
 }

@@ -1,9 +1,13 @@
 <?php
+
+declare(strict_types=1);
 /**
- * This file is part of Terp.
+ * This file is part of the KKGUAN Service.
  *
- * @link     http://terp.kkguan.com
- * @license  http://192.168.30.119:10080/KKERP/erp
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
 namespace KkErpService\RpcUtils\Test\Structures;
 
@@ -19,7 +23,7 @@ class TestDTOTest extends TestCase
     public function testConstruct()
     {
         $properties = [
-            'id' => 1,
+            'id'       => 1,
             'order_no' => '单号',
         ];
 
@@ -72,12 +76,12 @@ class TestDTOTest extends TestCase
         $dto = $this->_getDto();
         $dto->id = 1;
         $this->assertTrue(isset($dto->id));
-        $this->assertTrue(!isset($dto->orderNo));
+        $this->assertTrue(! isset($dto->orderNo));
 
         $dto = $this->_getDto();
         $dto->orderNo = 'orderNo';
         $this->assertTrue(isset($dto->orderNo));
-        $this->assertTrue(!isset($dto->id));
+        $this->assertTrue(! isset($dto->id));
     }
 
     public function testToString()
@@ -136,7 +140,7 @@ class TestDTOTest extends TestCase
         $dto = $this->_getDto();
         $dto->id = 1;
         $dto->list[] = TestDTO::make([
-            'id' => 2,
+            'id'       => 2,
             'order_no' => 'order',
         ]);
         $this->assertArrayHasKey('list', $dto->toArray());
