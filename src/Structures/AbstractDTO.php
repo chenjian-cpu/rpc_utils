@@ -34,6 +34,11 @@ abstract class AbstractDTO
         return $this->{$name} ?? null;
     }
 
+    public function __isset($name): bool
+    {
+        return !is_null($this->{$name});
+    }
+
     public function __toString()
     {
         return $this->toJson();

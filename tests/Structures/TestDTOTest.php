@@ -52,6 +52,19 @@ class TestDTOTest extends TestCase
         $this->assertNull($dto->orderNo);
     }
 
+    public function testIsset()
+    {
+        $dto = $this->_getDto();
+        $dto->id = 1;
+        $this->assertTrue(isset($dto->id));
+        $this->assertTrue(!isset($dto->orderNo));
+
+        $dto = $this->_getDto();
+        $dto->orderNo = 'orderNo';
+        $this->assertTrue(isset($dto->orderNo));
+        $this->assertTrue(!isset($dto->id));
+    }
+
     public function testToString()
     {
         $dto = $this->_getDto();
