@@ -5,9 +5,9 @@
  * @link     http://terp.kkguan.com
  * @license  http://192.168.30.119:10080/KKERP/erp
  */
-namespace KkErpService\RpcUtils\Test\Structures\RequestDto\Order\SplitPurchaseOrder;
+namespace KkErpService\RpcUtils\Test\Structures\Request\Order\SplitPurchaseOrder;
 
-use KkErpService\RpcUtils\Structures\RequestDto\Order\SplitPurchaseOrder\SearchDTO;
+use KkErpService\RpcUtils\Structures\Request\Order\SplitPurchaseOrder\SearchDTO;
 use PHPUnit\Framework\TestCase;
 
 /**

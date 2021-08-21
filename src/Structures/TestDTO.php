@@ -8,8 +8,7 @@
 namespace KkErpService\RpcUtils\Structures;
 
 /**
- * Class TestDTO
- * @package KkErpService\RpcUtils\Structures
+ * Class TestDTO.
  *
  * @property int $id ID
  */
