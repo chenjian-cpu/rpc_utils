@@ -14,6 +14,13 @@ abstract class AbstractDTO
 {
     private $_setParameters = [];
 
+    public function __construct(array $properties = [])
+    {
+        if (!empty($properties)) {
+            $this->addProperties(array_key_to_hump($properties));
+        }
+    }
+
     public function __set($name, $value)
     {
         $name = string_to_hump($name);
@@ -30,6 +37,16 @@ abstract class AbstractDTO
     public function __toString()
     {
         return $this->toJson();
+    }
+
+    public function addProperties(array $properties)
+    {
+        foreach ($properties as $name => $value) {
+            if (is_numeric($name)) {
+                continue;
+            }
+            !is_null($value) && $this->{$name} = $value;
+        }
     }
 
     public function getAttributes(): array

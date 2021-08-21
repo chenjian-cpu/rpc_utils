@@ -16,6 +16,19 @@ use PHPUnit\Framework\TestCase;
  */
 class TestDTOTest extends TestCase
 {
+    public function testConstruct()
+    {
+        $properties = [
+            'id' => 1,
+            'order_no' => '单号',
+        ];
+
+        $dto = $this->_getDto($properties);
+
+        $this->assertEquals(1, $dto->id);
+        $this->assertEquals('单号', $dto->orderNo);
+    }
+
     public function testSet()
     {
         $dto = $this->_getDto();
@@ -45,6 +58,24 @@ class TestDTOTest extends TestCase
         $dto->orderNo = 'orderNo';
 
         $this->assertEquals('{"order_no":"orderNo"}', sprintf('%s', $dto));
+    }
+
+    public function testAddProperties()
+    {
+        $properties = [
+            'id' => 1,
+        ];
+
+        $dto = $this->_getDto($properties);
+
+        $this->assertEquals(1, $dto->id);
+        $this->assertNull($dto->orderNo);
+
+        $dto->addProperties([
+            'orderNo' => '单号',
+        ]);
+
+        $this->assertEquals('单号', $dto->orderNo);
     }
 
     public function testGetAttributes()
@@ -84,8 +115,8 @@ class TestDTOTest extends TestCase
         $this->assertEquals('{"order_no":"单号"}', $dto->toJson());
     }
 
-    private function _getDto(): TestDTO
+    private function _getDto(array $properties = []): TestDTO
     {
-        return new TestDTO();
+        return new TestDTO($properties);
     }
 }

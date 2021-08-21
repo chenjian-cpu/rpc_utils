@@ -25,9 +25,9 @@ class QueryDTO extends AbstractDTO
     public $select = ['*'];
 
     /**
-     * @var int 限制条数
+     * @var int 限制条数，默认不限制
      */
-    public $limit = 0;
+    public $limit = -1;
 
     /**
      * @var array 忽略的ID
