@@ -7,9 +7,13 @@
  */
 namespace KkErpService\RpcUtils\Structures;
 
+/**
+ * Class TestDTO
+ * @package KkErpService\RpcUtils\Structures
+ *
+ * @property int $id ID
+ */
 class TestDTO extends AbstractDTO
 {
-    public $id;
-
     public $orderNo;
 }

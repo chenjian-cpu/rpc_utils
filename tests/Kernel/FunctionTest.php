@@ -5,7 +5,7 @@
  * @link     http://terp.kkguan.com
  * @license  http://192.168.30.119:10080/KKERP/erp
  */
-namespace KkErpService\RpcUtils\test\Kernel;
+namespace KkErpService\RpcUtils\Test\Kernel;
 
 use PHPUnit\Framework\TestCase;
 

@@ -12,16 +12,19 @@ use ReflectionProperty;
 
 abstract class AbstractDTO
 {
+    private $_setParameters = [];
+
     public function __set($name, $value)
     {
         $name = string_to_hump($name);
         $this->{$name} = $value;
+        $this->_setParameters[$name] = $value;
     }
 
     public function __get($name)
     {
         $name = string_to_hump($name);
-        return $this->{$name};
+        return $this->{$name} ?? null;
     }
 
     public function __toString()
@@ -31,17 +34,15 @@ abstract class AbstractDTO
 
     public function getAttributes(): array
     {
-        var_dump($this);
         $class = new ReflectionClass($this);
-        var_dump($class);
         $attributes = [];
-//        var_dump($class->getDocComment());
         foreach ($class->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
             if (!$property->isStatic()) {
                 $attributes[] = $property->getName();
             }
         }
-        return $attributes;
+
+        return array_merge($attributes, array_keys($this->_setParameters));
     }
 
     public function toArray(): array
@@ -50,7 +51,7 @@ abstract class AbstractDTO
 
         $array = [];
         foreach ($attributes as $attribute) {
-            $array[$attribute] = $this->{$attribute};
+            !is_null($this->{$attribute}) && $array[$attribute] = $this->{$attribute};
         }
 
         return array_key_to_line($array);
