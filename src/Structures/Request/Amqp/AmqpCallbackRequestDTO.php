@@ -21,6 +21,6 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
  * @property string $method 回调方法
  * @property array  $params 回调参数
  */
-class AmqpPushRequestDTO extends AbstractDTO
+class AmqpCallbackRequestDTO extends AbstractDTO
 {
 }

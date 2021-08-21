@@ -11,10 +11,10 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Contracts\Amqp;
 
-use KkErpService\RpcUtils\Structures\Request\Amqp\AmqpPushRequestDTO;
+use KkErpService\RpcUtils\Structures\Request\Amqp\AmqpCallbackRequestDTO;
 use KkErpService\RpcUtils\Structures\Response\CommonResponseDTO;
 
 interface AmqpRpcInterface
 {
-    public function push(AmqpPushRequestDTO $amqpPushRequestDTO): CommonResponseDTO;
+    public function callback(AmqpCallbackRequestDTO $amqpPushRequestDTO): CommonResponseDTO;
 }
