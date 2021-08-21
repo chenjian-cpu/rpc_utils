@@ -21,11 +21,6 @@ abstract class AbstractDTO
         }
     }
 
-    public static function make(array $properties = [])
-    {
-        return new static($properties);
-    }
-
     public function __set($name, $value)
     {
         $name = string_to_hump($name);
@@ -44,9 +39,19 @@ abstract class AbstractDTO
         return !is_null($this->{$name});
     }
 
+    public function __unset($name)
+    {
+        unset($this->{$name}, $this->_setParameters[$name]);
+    }
+
     public function __toString()
     {
         return $this->toJson();
+    }
+
+    public static function make(array $properties = [])
+    {
+        return new static($properties);
     }
 
     public function addProperties(array $properties)
@@ -78,14 +83,24 @@ abstract class AbstractDTO
 
         $array = [];
         foreach ($attributes as $attribute) {
-            !is_null($this->{$attribute}) && $array[$attribute] = $this->{$attribute};
+            isset($this->{$attribute}) && $array[$attribute] = $this->{$attribute};
         }
+        $array = array_key_to_line($array);
 
-        return array_key_to_line($array);
+        return $this->_loopObjectToArray($array);
     }
 
     public function toJson(): string
     {
         return json_encode($this->toArray(), JSON_UNESCAPED_UNICODE);
+    }
+
+    private function _loopObjectToArray(array &$array): array
+    {
+        foreach ($array as $key => $value) {
+            $value instanceof AbstractDTO && $array[$key] = $value->toArray();
+            is_array($value) && $array[$key] = $this->_loopObjectToArray($array[$key]);
+        }
+        return $array;
     }
 }

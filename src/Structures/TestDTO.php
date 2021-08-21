@@ -15,4 +15,6 @@ namespace KkErpService\RpcUtils\Structures;
 class TestDTO extends AbstractDTO
 {
     public $orderNo;
+
+    public $list;
 }

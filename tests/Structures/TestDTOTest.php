@@ -32,13 +32,13 @@ class TestDTOTest extends TestCase
     public function testMake()
     {
         $dto = TestDTO::make([
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->assertEquals(1, $dto->id);
 
         $dto->addProperties([
-            'id' => 2
+            'id' => 2,
         ]);
 
         $this->assertEquals(2, $dto->id);
@@ -132,6 +132,14 @@ class TestDTOTest extends TestCase
         $this->assertArrayHasKey('order_no', $dto->toArray());
         unset($dto->id);
         $this->assertArrayNotHasKey('id', $dto->toArray());
+
+        $dto = $this->_getDto();
+        $dto->id = 1;
+        $dto->list[] = TestDTO::make([
+            'id' => 2,
+            'order_no' => 'order',
+        ]);
+        $this->assertArrayHasKey('list', $dto->toArray());
     }
 
     public function testToJson()
