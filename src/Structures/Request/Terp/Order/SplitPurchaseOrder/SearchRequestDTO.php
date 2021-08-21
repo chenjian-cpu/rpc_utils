@@ -20,6 +20,7 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
  * @property int    $status     单据状态
  * @property array  $orderType  单据类型
  * @property string $createAuth 创建人
+ * @property array  $ids        ID集
  */
 class SearchRequestDTO extends QueryDTO
 {

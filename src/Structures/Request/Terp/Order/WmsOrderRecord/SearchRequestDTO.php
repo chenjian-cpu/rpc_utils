@@ -16,9 +16,11 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
 /**
  * WMS订单记录搜索.
  *
- * @property array $type         单据类型
- * @property array $returnStatus 回推订单状态
- * @property int   $syncStatus   同步状态
+ * @property array  $type         单据类型
+ * @property array  $returnStatus 回推订单状态
+ * @property int    $syncStatus   同步状态
+ * @property array  $ids          ID集
+ * @property string $orderNo      单号
  */
 class SearchRequestDTO extends QueryDTO
 {
