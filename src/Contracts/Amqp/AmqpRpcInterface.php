@@ -7,6 +7,9 @@
  */
 namespace KkErpService\RpcUtils\Contracts\Amqp;
 
+use KkErpService\RpcUtils\Structures\Request\Amqp\AmqpPushRequestDTO;
+use KkErpService\RpcUtils\Structures\Response\CommonResponseDTO;
+
 interface AmqpRpcInterface
 {
     /**
@@ -18,4 +21,6 @@ interface AmqpRpcInterface
      * @return bool   是否成功
      */
     public function callback(string $type, string $uri, string $method, array $params): bool;
+
+    public function push(AmqpPushRequestDTO $amqpPushRequestDTO): CommonResponseDTO;
 }

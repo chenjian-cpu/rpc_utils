@@ -7,8 +7,8 @@
  */
 namespace KkErpService\RpcUtils\Contracts\Terp\Order;
 
-use KkErpService\RpcUtils\Structures\Request\Order\SplitPurchaseOrder\SearchRequestDTO;
-use KkErpService\RpcUtils\Structures\Response\Order\SplitPurchaseOrder\SearchResponseDTO;
+use KkErpService\RpcUtils\Structures\Request\Terp\Order\SplitPurchaseOrder\SearchRequestDTO;
+use KkErpService\RpcUtils\Structures\Response\Terp\Order\SplitPurchaseOrder\SearchResponseDTO;
 
 /**
  * 采购单接口.

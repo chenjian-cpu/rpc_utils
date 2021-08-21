@@ -5,7 +5,7 @@
  * @link     http://terp.kkguan.com
  * @license  http://192.168.30.119:10080/KKERP/erp
  */
-namespace KkErpService\RpcUtils\Structures\Request\Order\SplitPurchaseOrder;
+namespace KkErpService\RpcUtils\Structures\Request\Terp\Order\SplitPurchaseOrder;
 
 use KkErpService\RpcUtils\Structures\QueryDTO;
 
