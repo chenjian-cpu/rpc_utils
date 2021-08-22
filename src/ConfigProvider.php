@@ -11,8 +11,8 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils;
 
+use Hyperf\JsonRpc\Listener\RegisterProtocolListener;
 use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
-use KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 
 class ConfigProvider
@@ -21,9 +21,9 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
+                RegisterProtocolListener::class => \KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener::class,
             ],
             'listeners' => [
-                RegisterProtocolListener::class,
             ],
             'middlewares' => [
                 'jsonrpc-http' => [
