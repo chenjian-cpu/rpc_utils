@@ -15,17 +15,51 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
 
 /**
  * 采购订单拆单数据.
- *
- * @property int    $id             ID
- * @property string $orderNo        单号
- * @property int    $orderServiceId 单据服务ID
- * @property int    $orderType      单据类型
- * @property string $md5            MD5
- * @property int    $status         状态
- * @property int    $errTimes       错误次数
- * @property string $createTime     创建时间
- * @property string $createAuth     创建人
  */
 class SplitPurchaseOrderDTO extends AbstractDTO
 {
+    /**
+     * @var int ID
+     */
+    public $id;
+
+    /**
+     * @var string 单号
+     */
+    public $orderNo;
+
+    /**
+     * @var int 单据服务ID
+     */
+    public $orderServiceId;
+
+    /**
+     * @var int 单据类型
+     */
+    public $orderType;
+
+    /**
+     * @var string MD5
+     */
+    public $md5;
+
+    /**
+     * @var int 状态
+     */
+    public $status;
+
+    /**
+     * @var int 错误次数
+     */
+    public $errTimes;
+
+    /**
+     * @var string 创建时间
+     */
+    public $createTime;
+
+    /**
+     * @var string 创建人
+     */
+    public $createAuth;
 }

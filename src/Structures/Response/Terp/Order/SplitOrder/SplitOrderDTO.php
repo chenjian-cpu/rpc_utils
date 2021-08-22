@@ -15,15 +15,41 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
 
 /**
  * 拆单数据.
- *
- * @property int    $id         ID
- * @property int    $orderType  单据类型
- * @property string $md5        MD5
- * @property int    $status     状态
- * @property int    $errTimes   错误次数
- * @property string $createTime 创建时间
- * @property string $createAuth 创建人
  */
 class SplitOrderDTO extends AbstractDTO
 {
+    /**
+     * @var int ID
+     */
+    public $id;
+
+    /**
+     * @var int 单据类型
+     */
+    public $orderType;
+
+    /**
+     * @var string MD5
+     */
+    public $md5;
+
+    /**
+     * @var int 状态
+     */
+    public $status;
+
+    /**
+     * @var int 错误次数
+     */
+    public $errTimes;
+
+    /**
+     * @var string 创建时间
+     */
+    public $createTime;
+
+    /**
+     * @var string 创建人
+     */
+    public $createAuth;
 }
