@@ -28,12 +28,6 @@ abstract class AbstractDTO
 
     public function __set($name, $value)
     {
-        $ignoreNames = ['attributes'];
-        if (!in_array($name, $ignoreNames, true) && ! isset($this->{$name})) {
-            // todo \Symfony\Component\Serializer\Normalizer\ObjectNormalizer::extractAttributes 反射无法获取未定义的动态属性，需要探讨一下方案
-            throw new SystemException("【{$name}】请先定义类属性，暂不支持动态属性");
-        }
-
         $name = string_to_hump($name);
         $this->{$name} = $value;
         $this->_setParameters[$name] = $value;

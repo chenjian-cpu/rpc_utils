@@ -5,13 +5,11 @@
     "require": {
         "php": ">=7.2",
         "ext-json": "*",
-        "hyperf/di": "^2.1",
-        "hyperf/contract": "^2.1",
-        "hyperf/json-rpc": "^2.1",
-        "hyperf/rpc-server": "^2.1",
-        "hyperf/rpc-client": "^2.1",
-        "symfony/property-access": "^5.0",
-        "symfony/serializer": "^5.0",
+        "hyperf/di": "^2.1|^1.1",
+        "hyperf/contract": "^2.1|^1.1",
+        "hyperf/json-rpc": "^2.1|^1.1",
+        "hyperf/rpc-server": "^2.1|^1.1",
+        "hyperf/rpc-client": "^2.1|^1.1",
         "psr/http-server-middleware": "^1.0"
     },
     "autoload": {
