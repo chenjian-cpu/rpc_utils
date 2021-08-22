@@ -16,6 +16,8 @@ use Hyperf\Utils\Serializer\Serializer;
 use Hyperf\Utils\Serializer\SerializerFactory;
 use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
+use Hyperf\JsonRpc\JsonRpcPoolTransporter;
+use Hyperf\JsonRpc\JsonRpcTransporter;
 
 class ConfigProvider
 {
@@ -25,6 +27,9 @@ class ConfigProvider
             'dependencies' => [
                 // 支持对象的序列化和反序列化
                 NormalizerInterface::class => new SerializerFactory(Serializer::class),
+
+                // 基于连接池的 Transporter
+                JsonRpcTransporter::class => JsonRpcPoolTransporter::class,
             ],
             'middlewares' => [
                 'jsonrpc-http' => [
