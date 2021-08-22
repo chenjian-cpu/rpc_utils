@@ -24,7 +24,7 @@ class ExceptionCode
     const INVALID_ARG = 2001;
 
     /**
-     * 系统未定义错误.
+     * 系统异常.
      */
     const ERROR = 9999;
 }

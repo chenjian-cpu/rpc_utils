@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures;
 
+use KkErpService\RpcUtils\Kernel\Exceptions\SystemException;
 use ReflectionClass;
 use ReflectionProperty;
 
@@ -27,6 +28,10 @@ abstract class AbstractDTO
 
     public function __set($name, $value)
     {
+        if (! isset($this->{$name})) {
+            throw new SystemException('请先定义类属性，暂不支持动态属性');
+        }
+
         $name = string_to_hump($name);
         $this->{$name} = $value;
         $this->_setParameters[$name] = $value;

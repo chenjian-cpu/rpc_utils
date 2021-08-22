@@ -15,14 +15,36 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
 
 /**
  * 拆单搜索.
- *
- * @property int    $lastID     最后ID
- * @property string $md5        MD5
- * @property array  $orderType  单据类型
- * @property string $createAuth 创建人
- * @property array  $ids        ID集
- * @property int    $status     单据状态
  */
 class SearchRequestDTO extends QueryDTO
 {
+    /**
+     * @var int 最后ID
+     */
+    public $lastId;
+
+    /**
+     * @var string MD5
+     */
+    public $md5;
+
+    /**
+     * @var array 单据类型
+     */
+    public $orderType;
+
+    /**
+     * @var string 创建人
+     */
+    public $createAuth;
+
+    /**
+     * @var array ID集
+     */
+    public $ids;
+
+    /**
+     * @var int 单据状态
+     */
+    public $status;
 }
