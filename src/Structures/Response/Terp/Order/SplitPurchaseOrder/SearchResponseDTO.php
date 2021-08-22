@@ -9,16 +9,14 @@ declare(strict_types=1);
  * 本文件属于KK馆版权所有，泄漏必究。
  * This file belong to KKGUAN, all rights reserved.
  */
-namespace KkErpService\RpcUtils\Structures;
+namespace KkErpService\RpcUtils\Structures\Response\Terp\Order\SplitPurchaseOrder;
 
-/**
- * 用于单测AbstractDTO.
- *
- * @property int $id ID
- */
-class TestDTO extends AbstractDTO
+use KkErpService\RpcUtils\Structures\AbstractDTO;
+
+class SearchResponseDTO extends AbstractDTO
 {
-    public $orderNo;
-
+    /**
+     * @var SplitPurchaseOrderDTO[]
+     */
     public $list;
 }

@@ -11,13 +11,13 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Contracts\Terp\Order;
 
-use KkErpService\RpcUtils\Structures\Request\Terp\Order\SplitOrder\SearchRequestDTO;
-use KkErpService\RpcUtils\Structures\Response\Terp\Order\SplitOrder\SearchResponseDTO;
+use KkErpService\RpcUtils\Structures\Request\Terp\Order\SplitPurchaseOrder\SearchRequestDTO;
+use KkErpService\RpcUtils\Structures\Response\Terp\Order\SplitPurchaseOrder\SearchResponseDTO;
 
 /**
- * 拆单接口.
+ * 采购单接口.
  */
-interface SplitOrderRpcInterface
+interface SplitPurchaseOrderRpcInterface
 {
     public function search(SearchRequestDTO $searchRequestDTO): SearchResponseDTO;
 }

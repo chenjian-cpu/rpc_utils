@@ -1,9 +1,13 @@
 <?php
+
+declare(strict_types=1);
 /**
- * This file is part of Terp.
+ * This file is part of the KKGUAN Service.
  *
- * @link     http://terp.kkguan.com
- * @license  http://192.168.30.119:10080/KKERP/erp
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
 namespace KkErpService\RpcUtils\Kernel\Aspect;
 
@@ -42,7 +46,7 @@ class RpcRequestAspect extends AbstractAspect
         } finally {
             if (isset($throwable)) {
                 $content = [
-                    'code' => $throwable->getCode(),
+                    'code'    => $throwable->getCode(),
                     'message' => '[rpc_request_error]' . $throwable->getMessage(),
                 ];
             }
@@ -58,10 +62,10 @@ class RpcRequestAspect extends AbstractAspect
      */
     protected function log(string $id, string $method, $args, $content, float $startTime): bool
     {
-        if (!is_string($args)) {
+        if (! is_string($args)) {
             $args = json_encode($args, JSON_UNESCAPED_UNICODE);
         }
-        if (!is_string($content)) {
+        if (! is_string($content)) {
             $content = json_encode($content, JSON_UNESCAPED_UNICODE);
         }
 

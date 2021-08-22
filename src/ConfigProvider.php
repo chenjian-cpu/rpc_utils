@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Terp.
+ * This file is part of the KKGUAN Service.
  *
- * @link     http://terp.kkguan.com
- * @license  http://192.168.30.119:10080/KKERP/erp
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
 namespace KkErpService\RpcUtils;
 
-use Hyperf\Contract\NormalizerInterface;
-use Hyperf\Utils\Serializer\Serializer;
-use Hyperf\Utils\Serializer\SerializerFactory;
 use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
+use KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 
 class ConfigProvider
@@ -21,8 +21,9 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                // 支持对象的序列化和反序列化
-                NormalizerInterface::class => new SerializerFactory(Serializer::class),
+            ],
+            'listeners' => [
+                RegisterProtocolListener::class,
             ],
             'middlewares' => [
                 'jsonrpc-http' => [

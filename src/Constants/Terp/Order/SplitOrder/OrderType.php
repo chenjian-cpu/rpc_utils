@@ -9,22 +9,22 @@ declare(strict_types=1);
  * 本文件属于KK馆版权所有，泄漏必究。
  * This file belong to KKGUAN, all rights reserved.
  */
-namespace KkErpService\RpcUtils\Kernel\Constants;
+namespace KkErpService\RpcUtils\Constants\Terp\Order\SplitOrder;
 
-class ExceptionCode
+class OrderType
 {
     /**
-     * rpc请求异常.
+     * 购销单.
      */
-    const REQUEST = 2000;
+    const PURCHASE_ORDER = 1;
 
     /**
-     * 无效的参数.
+     * 调拨单.
      */
-    const INVALID_ARG = 2001;
+    const TRANSFER_ORDER = 2;
 
     /**
-     * 系统未定义错误.
+     * 销售单.
      */
-    const ERROR = 9999;
+    const SALES_ORDER = 3;
 }
