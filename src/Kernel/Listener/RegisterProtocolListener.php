@@ -11,13 +11,18 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Kernel\Listener;
 
+use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\JsonRpc\DataFormatter;
 use Hyperf\JsonRpc\JsonRpcHttpTransporter;
 use Hyperf\JsonRpc\PathGenerator;
 use Hyperf\Rpc\ProtocolManager;
 use Hyperf\Utils\Packer\PhpSerializerPacker;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
 
-class RegisterProtocolListener extends \Hyperf\JsonRpc\Listener\RegisterProtocolListener
+/**
+ * 重写 jsonrpc-http 传输.
+ */
+class RegisterProtocolListener implements ListenerInterface
 {
     /**
      * @var ProtocolManager
@@ -27,7 +32,13 @@ class RegisterProtocolListener extends \Hyperf\JsonRpc\Listener\RegisterProtocol
     public function __construct(ProtocolManager $protocolManager)
     {
         $this->protocolManager = $protocolManager;
-        parent::__construct($protocolManager);
+    }
+
+    public function listen(): array
+    {
+        return [
+            ConsoleCommandEvent::class,
+        ];
     }
 
     public function process(object $event)

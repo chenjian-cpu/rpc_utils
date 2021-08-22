@@ -14,7 +14,7 @@ namespace KkErpService\RpcUtils\Structures\Request\Amqp;
 use KkErpService\RpcUtils\Structures\AbstractDTO;
 
 /**
- * Class AmqpPushRequestDTO.
+ * AMQP推送.
  *
  * @property string $type   类型，关联producer配置
  * @property string $uri    回调地址
