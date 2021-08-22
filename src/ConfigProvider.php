@@ -13,6 +13,7 @@ namespace KkErpService\RpcUtils;
 
 use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
 use KkErpService\RpcUtils\Kernel\Component\HttpServer;
+use KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 
 class ConfigProvider
@@ -24,6 +25,7 @@ class ConfigProvider
                 \Hyperf\JsonRpc\HttpServer::class => HttpServer::class,
             ],
             'listeners' => [
+                RegisterProtocolListener::class,
             ],
             'middlewares' => [
                 'jsonrpc-http' => [
