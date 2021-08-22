@@ -15,31 +15,13 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
 
 /**
  * 采购单搜索.
+ *
+ * @property string $md5        md5值
+ * @property int    $status     单据状态
+ * @property array  $orderType  单据类型
+ * @property string $createAuth 创建人
+ * @property array  $ids        ID集
  */
 class SearchRequestDTO extends QueryDTO
 {
-    /**
-     * @var string MD5
-     */
-    public $md5;
-
-    /**
-     * @var int 单据状态
-     */
-    public $status;
-
-    /**
-     * @var array 单据类型
-     */
-    public $orderType;
-
-    /**
-     * @var string 创建人
-     */
-    public $createAuth;
-
-    /**
-     * @var array ID集
-     */
-    public $ids;
 }

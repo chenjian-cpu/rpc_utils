@@ -15,26 +15,12 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
 
 /**
  * AMQP推送.
+ *
+ * @property string $type   类型，关联producer配置
+ * @property string $uri    回调地址
+ * @property string $method 回调方法
+ * @property array  $params 回调参数
  */
 class AmqpCallbackRequestDTO extends AbstractDTO
 {
-    /**
-     * @var string 类型，关联producer配置
-     */
-    public $type;
-
-    /**
-     * @var string 回调地址
-     */
-    public $uri;
-
-    /**
-     * @var string 回调方法
-     */
-    public $method;
-
-    /**
-     * @var array 回调参数
-     */
-    public $params;
 }
