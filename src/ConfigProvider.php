@@ -18,6 +18,7 @@ use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 use Hyperf\JsonRpc\JsonRpcPoolTransporter;
 use Hyperf\JsonRpc\JsonRpcTransporter;
+use Hyperf\JsonRpc\HttpServer;
 
 class ConfigProvider
 {
@@ -30,6 +31,9 @@ class ConfigProvider
 
                 // 基于连接池的 Transporter
                 JsonRpcTransporter::class => JsonRpcPoolTransporter::class,
+
+                // 增加 header
+                HttpServer::class => Kernel\Server\HttpServer::class,
             ],
             'middlewares' => [
                 'jsonrpc-http' => [
