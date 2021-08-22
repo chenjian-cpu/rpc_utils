@@ -21,7 +21,6 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                RegisterProtocolListener::class => \KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener::class,
             ],
             'listeners' => [
             ],
