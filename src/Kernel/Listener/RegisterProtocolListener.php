@@ -11,12 +11,16 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Kernel\Listener;
 
+use Hyperf\Event\Annotation\Listener;
 use Hyperf\JsonRpc\DataFormatter;
 use Hyperf\JsonRpc\JsonRpcHttpTransporter;
 use Hyperf\JsonRpc\PathGenerator;
 use Hyperf\Rpc\ProtocolManager;
 use Hyperf\Utils\Packer\PhpSerializerPacker;
 
+/**
+ * @Listener(priority=0)
+ */
 class RegisterProtocolListener extends \Hyperf\JsonRpc\Listener\RegisterProtocolListener
 {
     /**
