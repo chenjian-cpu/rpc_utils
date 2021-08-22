@@ -11,9 +11,6 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils;
 
-use Hyperf\Contract\NormalizerInterface;
-use Hyperf\Utils\Serializer\Serializer;
-use Hyperf\Utils\Serializer\SerializerFactory;
 use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 
@@ -23,8 +20,6 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                // 支持对象的序列化和反序列化
-                NormalizerInterface::class => new SerializerFactory(Serializer::class),
             ],
             'listeners' => [
             ],
