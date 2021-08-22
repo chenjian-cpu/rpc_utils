@@ -1,0 +1,35 @@
+<?php
+
+declare(strict_types=1);
+/**
+ * This file is part of the KKGUAN Service.
+ *
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
+ */
+namespace KkErpService\RpcUtils\Constants\Terp\Order\SplitPurchaseOrder;
+
+class Status
+{
+    /**
+     * 创建失败.
+     */
+    const CREATE_FAIL = -1;
+
+    /**
+     * 未创建.
+     */
+    const NOT_CREATE = 0;
+
+    /**
+     * 创建成功
+     */
+    const CREATE_SUCCESS = 1;
+
+    /**
+     * 暂不推送
+     */
+    const NO_PUSH = 2;
+}

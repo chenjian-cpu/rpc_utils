@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
+ * This file is part of the KKGUAN Service.
  *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ * (c) KKGUAN Service <>
+ *
+ * 本文件属于KK馆版权所有，泄漏必究。
+ * This file belong to KKGUAN, all rights reserved.
  */
 namespace KkErpService\RpcUtils;
 
-use KkErpService\RpcUtils\Consumers\Terp\SplitPurchaseOrderRpcConsumer;
-use KkErpService\RpcUtils\Interfaces\Terp\SplitPurchaseOrderRpcInterface;
+use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
+use KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener;
+use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 
 class ConfigProvider
 {
@@ -20,7 +21,17 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                SplitPurchaseOrderRpcInterface::class => SplitPurchaseOrderRpcConsumer::class,
+            ],
+            'listeners' => [
+                RegisterProtocolListener::class,
+            ],
+            'middlewares' => [
+                'jsonrpc-http' => [
+                    JsonRpcHttpMiddleware::class,
+                ],
+            ],
+            'aspects' => [
+                RpcRequestAspect::class,
             ],
         ];
     }

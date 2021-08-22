@@ -3,15 +3,35 @@
     "description": "Package description here.",
     "license": "MIT",
     "require": {
-        "php": ">=7.3",
-        "hyperf/json-rpc": "^2.1",
-        "hyperf/rpc-client": "^2.1",
-        "symfony/property-access": "^5.0",
-        "symfony/serializer": "^5.0"
+        "php": ">=7.2",
+        "ext-json": "*",
+        "hyperf/di": "^2.1|^1.1",
+        "hyperf/contract": "^2.1|^1.1",
+        "hyperf/json-rpc": "^2.1|^1.1",
+        "hyperf/rpc-server": "^2.1|^1.1",
+        "hyperf/rpc-client": "^2.1|^1.1",
+        "psr/http-server-middleware": "^1.0"
     },
     "autoload": {
+        "files": [
+            "src/Kernel/Functions.php"
+        ],
         "psr-4": {
             "KkErpService\\RpcUtils\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KkErpService\\RpcUtils\\Test\\": "tests/"
+        }
+    },
+    "extra": {
+        "hyperf": {
+            "config": "KkErpService\\RpcUtils\\ConfigProvider"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "mockery/mockery": "^1.4"
     }
 }
