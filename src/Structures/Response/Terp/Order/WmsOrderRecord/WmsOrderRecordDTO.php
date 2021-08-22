@@ -15,41 +15,15 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
 
 /**
  * WMS订单记录.
+ *
+ * @property int    $id         ID
+ * @property int    $type       单据类型
+ * @property string $orderNo    单号
+ * @property int    $syncStatus 同步状态
+ * @property int    $errTimes   错误次数
+ * @property string $createTime 创建时间
+ * @property string $createAuth 创建人
  */
 class WmsOrderRecordDTO extends AbstractDTO
 {
-    /**
-     * @var int ID
-     */
-    public $id;
-
-    /**
-     * @var int 单据类型
-     */
-    public $orderType;
-
-    /**
-     * @var string 单号
-     */
-    public $orderNo;
-
-    /**
-     * @var int 同步状态
-     */
-    public $syncStatus;
-
-    /**
-     * @var int 错误次数
-     */
-    public $errTimes;
-
-    /**
-     * @var string 创建时间
-     */
-    public $createTime;
-
-    /**
-     * @var string 创建人
-     */
-    public $createAuth;
 }

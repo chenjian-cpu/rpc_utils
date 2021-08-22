@@ -11,7 +11,6 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures;
 
-use KkErpService\RpcUtils\Kernel\Exceptions\SystemException;
 use ReflectionClass;
 use ReflectionProperty;
 
