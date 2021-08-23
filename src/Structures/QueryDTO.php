@@ -14,6 +14,11 @@ namespace KkErpService\RpcUtils\Structures;
 class QueryDTO extends AbstractDTO
 {
     /**
+     * @var bool 是否开启分页
+     */
+    public $forPage = false;
+
+    /**
      * @var int 当前页数
      */
     public $page = 1;
@@ -29,7 +34,7 @@ class QueryDTO extends AbstractDTO
     public $select = ['*'];
 
     /**
-     * @var int 限制条数，默认不限制
+     * @var int 限制条数，默认不限制，分页开启时，此条件无效
      */
     public $limit = -1;
 
