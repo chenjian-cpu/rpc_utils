@@ -6,6 +6,7 @@
         "php": ">=7.2",
         "ext-json": "*",
         "hyperf/di": "^2.1|^1.1",
+        "hyperf/framework": "^2.1|^1.1",
         "hyperf/contract": "^2.1|^1.1",
         "hyperf/json-rpc": "^2.1|^1.1",
         "hyperf/rpc-server": "^2.1|^1.1",

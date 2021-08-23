@@ -12,12 +12,12 @@ declare(strict_types=1);
 namespace KkErpService\RpcUtils\Kernel\Listener;
 
 use Hyperf\Event\Contract\ListenerInterface;
+use Hyperf\Framework\Event\BootApplication;
 use Hyperf\JsonRpc\DataFormatter;
 use Hyperf\JsonRpc\JsonRpcHttpTransporter;
 use Hyperf\JsonRpc\PathGenerator;
 use Hyperf\Rpc\ProtocolManager;
 use Hyperf\Utils\Packer\PhpSerializerPacker;
-use Symfony\Component\Console\Event\ConsoleCommandEvent;
 
 /**
  * 重写 jsonrpc-http 传输.
@@ -37,7 +37,7 @@ class RegisterProtocolListener implements ListenerInterface
     public function listen(): array
     {
         return [
-            ConsoleCommandEvent::class,
+            BootApplication::class,
         ];
     }
 

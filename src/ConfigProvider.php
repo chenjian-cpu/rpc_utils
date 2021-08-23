@@ -25,7 +25,7 @@ class ConfigProvider
                 \Hyperf\JsonRpc\HttpServer::class => HttpServer::class,
             ],
             'listeners' => [
-                RegisterProtocolListener::class,
+                RegisterProtocolListener::class => 0,
             ],
             'middlewares' => [
                 'jsonrpc-http' => [
