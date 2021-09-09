@@ -11,20 +11,16 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Request\ExportService;
 
-class CreateExportDto extends AbstractDto
+class FillingCompleteDTO extends AbstractDTO
 {
     /**
-     * 导出任务名称,服务唯一性.
-     *
-     * @var string
+     * @var string 导出任务号
      */
-    public $exportName;
+    public $taskNo;
 
     /**
-     * excel表头,一维数组.
-     *
-     * @example ["ID","姓名","性别"]
-     * @var array
+     * 预计填充总数.
+     * @var
      */
-    public $exportHeader;
+    public $preFillTotal;
 }

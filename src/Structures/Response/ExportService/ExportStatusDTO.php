@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Response\ExportService;
 
-class ExportStatusDto
+class ExportStatusDTO
 {
     /**
      * 状态code.

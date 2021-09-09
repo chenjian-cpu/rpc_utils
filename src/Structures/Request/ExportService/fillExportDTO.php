@@ -11,17 +11,25 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Request\ExportService;
 
-class GetExportStatusDto extends AbstractDto
+class fillExportDTO extends AbstractDTO
 {
     /**
-     * 导出任务号.
-     * @var string
+     * @var string 导出任务号
      */
     public $taskNo;
 
     /**
-     * 导出任务名称.
-     * @var string
+     * 数据排序,服务会从0-N写入excel.
+     *
+     * @var int
      */
-    public $exportName;
+    public $sort;
+
+    /**
+     * 导入的数据,一维数组.
+     *
+     * @example [1,"张三","女"]
+     * @var array
+     */
+    public $items;
 }

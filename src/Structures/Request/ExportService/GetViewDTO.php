@@ -11,16 +11,6 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Request\ExportService;
 
-class FillingCompleteDto extends AbstractDto
+class GetViewDTO extends AbstractDTO
 {
-    /**
-     * @var string 导出任务号
-     */
-    public $taskNo;
-
-    /**
-     * 预计填充总数.
-     * @var
-     */
-    public $preFillTotal;
 }

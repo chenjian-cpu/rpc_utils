@@ -11,25 +11,17 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Request\ExportService;
 
-class fillExportDto extends AbstractDto
+abstract class AbstractDTO extends \KkErpService\RpcUtils\Structures\AbstractDTO
 {
     /**
-     * @var string 导出任务号
+     * 调用方唯一识别id.
+     * @var string
      */
-    public $taskNo;
+    public $appId;
 
     /**
-     * 数据排序,服务会从0-N写入excel.
-     *
-     * @var int
+     * 基础服务-用户服务 用户id.
+     * @var string
      */
-    public $sort;
-
-    /**
-     * 导入的数据,一维数组.
-     *
-     * @example [1,"张三","女"]
-     * @var array
-     */
-    public $items;
+    public $userId;
 }

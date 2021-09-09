@@ -11,17 +11,17 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Request\ExportService;
 
-class AbstractDto
+class GetExportStatusDTO extends AbstractDTO
 {
     /**
-     * 调用方唯一识别id.
+     * 导出任务号.
      * @var string
      */
-    public $appId;
+    public $taskNo;
 
     /**
-     * 基础服务-用户服务 用户id.
+     * 导出任务名称.
      * @var string
      */
-    public $userId;
+    public $exportName;
 }

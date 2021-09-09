@@ -11,12 +11,12 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Contracts\Export;
 
-use KkErpService\RpcUtils\Structures\Request\ExportService\CreateExportDto;
-use KkErpService\RpcUtils\Structures\Request\ExportService\fillExportDto;
-use KkErpService\RpcUtils\Structures\Request\ExportService\FillingCompleteDto;
-use KkErpService\RpcUtils\Structures\Request\ExportService\GetExportStatusDto;
-use KkErpService\RpcUtils\Structures\Request\ExportService\GetViewDto;
-use KkErpService\RpcUtils\Structures\Response\ExportService\ExportStatusDto;
+use KkErpService\RpcUtils\Structures\Request\ExportService\CreateExportDTO;
+use KkErpService\RpcUtils\Structures\Request\ExportService\fillExportDTO;
+use KkErpService\RpcUtils\Structures\Request\ExportService\FillingCompleteDTO;
+use KkErpService\RpcUtils\Structures\Request\ExportService\GetExportStatusDTO;
+use KkErpService\RpcUtils\Structures\Request\ExportService\GetViewDTO;
+use KkErpService\RpcUtils\Structures\Response\ExportService\ExportStatusDTO;
 
 interface ExportRpcInterface
 {
@@ -25,25 +25,25 @@ interface ExportRpcInterface
      *
      * @return string 任务id
      */
-    public function createExport(CreateExportDto $createExport): string;
+    public function createExport(CreateExportDTO $createExport): string;
 
     /**
      * 填充导出任务
      */
-    public function fillExport(fillExportDto $fillExportDto): bool;
+    public function fillExport(fillExportDTO $fillExportDto): bool;
 
     /**
      * 完成数据填充.
      */
-    public function fillingComplete(FillingCompleteDto $fillExportDto): bool;
+    public function fillingComplete(FillingCompleteDTO $fillExportDto): bool;
 
     /**
      * 获取导出任务状态
      */
-    public function getExportStatus(GetExportStatusDto $exportStatusDto): ExportStatusDto;
+    public function getExportStatus(GetExportStatusDTO $exportStatusDto): ExportStatusDTO;
 
     /**
      * 获取可视化链接.
      */
-    public function getView(GetViewDto $getViewDto): string;
+    public function getView(GetViewDTO $getViewDto): string;
 }
