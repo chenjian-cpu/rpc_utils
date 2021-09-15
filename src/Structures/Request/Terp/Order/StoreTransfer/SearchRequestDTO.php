@@ -15,12 +15,6 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
 
 /**
  * 门店调拨单搜索.
- *
- * @property string $bill_num
- * @property int    $status     单据状态
- * @property array  $type  单据类型
- * @property string $createAuth 创建人
- * @property array  $ids        ID集
  */
 class SearchRequestDTO extends QueryDTO
 {
