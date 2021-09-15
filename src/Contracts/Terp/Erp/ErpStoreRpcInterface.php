@@ -12,8 +12,9 @@ declare(strict_types=1);
 namespace KkErpService\RpcUtils\Contracts\Terp\Erp;
 
 
-use KkErpService\RpcUtils\Structures\Request\Terp\Order\StoreTransfer\SearchRequestDTO;
-use KkErpService\RpcUtils\Structures\Response\Terp\StoreTransfer\SearchResponseDTO;
+
+use KkErpService\RpcUtils\Structures\Request\Terp\Erp\ErpStore\SearchRequestDTO;
+use KkErpService\RpcUtils\Structures\Response\Terp\Erp\ErpStore\SearchResponseDTO;
 
 interface ErpStoreRpcInterface
 {

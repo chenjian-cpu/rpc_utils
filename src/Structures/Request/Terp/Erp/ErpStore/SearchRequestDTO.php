@@ -9,7 +9,7 @@ declare(strict_types=1);
  * 本文件属于KK馆版权所有，泄漏必究。
  * This file belong to KKGUAN, all rights reserved.
  */
-namespace KkErpService\RpcUtils\Structures\Request\Terp\Order\Erp;
+namespace KkErpService\RpcUtils\Structures\Request\Terp\Erp\ErpStore;
 
 use KkErpService\RpcUtils\Structures\QueryDTO;
 
