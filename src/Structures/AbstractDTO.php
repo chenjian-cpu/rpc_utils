@@ -21,7 +21,7 @@ abstract class AbstractDTO
     public function __construct(array $properties = [])
     {
         if (! empty($properties)) {
-            $this->addProperties(array_key_to_hump($properties));
+            $this->addProperties($properties);
         }
     }
 
@@ -60,6 +60,7 @@ abstract class AbstractDTO
 
     public function addProperties(array $properties)
     {
+        $properties = array_key_to_hump($properties, false, false);
         foreach ($properties as $name => $value) {
             if (is_numeric($name)) {
                 continue;
