@@ -77,11 +77,11 @@ if (! function_exists('array_key_to_hump')) {
      * 转换数组key成驼峰.
      * @param array $array 要转换的数组
      */
-    function array_key_to_hump(array $array, bool $firstUp = false): array
+    function array_key_to_hump(array $array, bool $firstUp = false, bool $loop = true): array
     {
         $convert = [];
         foreach ($array as $key => $value) {
-            if (is_array($value)) {
+            if (is_array($value) && $loop) {
                 $convert[is_string($key) ? string_to_hump($key, $firstUp) : $key] = array_key_to_hump($value, $firstUp);
             } else {
                 $convert[is_string($key) ? string_to_hump($key, $firstUp) : $key] = $value;
