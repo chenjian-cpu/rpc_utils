@@ -18,8 +18,8 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
  *
  * @property int    $id         ID
  * @property int    $orderType  单据类型
+ * @property int    $orderNo  单据号
  * @property int    $status     状态
- * @property int    $errTimes   错误次数
  * @property string $createTime 创建时间
  * @property string $createAuth 创建人
  */
