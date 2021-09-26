@@ -13,6 +13,15 @@ namespace KkErpService\RpcUtils\Structures\Response\Terp\Order\PushRecord;
 
 use KkErpService\RpcUtils\Structures\AbstractDTO;
 
+/**
+ * 铺货单数据.
+ *
+ * @property string $orderNo    单据编号
+ * @property string $data       单据数据
+ * @property int    $serverID   服务器编号
+ * @property int    $apiType    推送API类型
+ * @property int    $pushStatus 推送状态
+ */
 class PushRecordDTO extends AbstractDTO
 {
 }
