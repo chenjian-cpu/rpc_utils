@@ -16,7 +16,7 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
 class SearchResponseDTO extends AbstractDTO
 {
     /**
-     * @var SplitOrderDTO[]
+     * @var PushRecordDTO[]
      */
     public $list;
 }

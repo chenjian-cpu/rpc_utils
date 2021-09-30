@@ -16,8 +16,9 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
 /**
  * 铺货单单搜索.
  *
- * @property int $apiType    推送API类型
- * @property int $pushStatus 推送状态
+ * @property array $ids        ID集
+ * @property int   $apiType    推送API类型
+ * @property int   $pushStatus 推送状态
  */
 class SearchRequestDTO extends QueryDTO
 {
