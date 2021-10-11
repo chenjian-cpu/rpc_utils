@@ -15,7 +15,7 @@ use KkErpService\RpcUtils\Structures\AbstractDTO;
 
 /**
  * 根据商品查询税收编码.
- * [['goods_no'=>'', 'fourth_type_num'=>]].
+ * [['goods_no'=>'', 'fourth_type_num'=>'']].
  * @property array $items
  */
 class GoodsDTO extends AbstractDTO
