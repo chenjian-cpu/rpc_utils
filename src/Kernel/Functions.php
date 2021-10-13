@@ -9,6 +9,10 @@ declare(strict_types=1);
  * 本文件属于KK馆版权所有，泄漏必究。
  * This file belong to KKGUAN, all rights reserved.
  */
+
+use Hyperf\Utils\Context;
+use KkErpService\RpcUtils\Kernel\Constants\ContextId;
+
 if (! function_exists('get_elapsed_time')) {
     /**
      * 计算耗时.
@@ -77,11 +81,11 @@ if (! function_exists('array_key_to_hump')) {
      * 转换数组key成驼峰.
      * @param array $array 要转换的数组
      */
-    function array_key_to_hump(array $array, bool $firstUp = false): array
+    function array_key_to_hump(array $array, bool $firstUp = false, bool $loop = true): array
     {
         $convert = [];
         foreach ($array as $key => $value) {
-            if (is_array($value)) {
+            if (is_array($value) && $loop) {
                 $convert[is_string($key) ? string_to_hump($key, $firstUp) : $key] = array_key_to_hump($value, $firstUp);
             } else {
                 $convert[is_string($key) ? string_to_hump($key, $firstUp) : $key] = $value;
@@ -89,5 +93,20 @@ if (! function_exists('array_key_to_hump')) {
         }
 
         return $convert;
+    }
+}
+
+if (! function_exists('get_rpc_request_id')) {
+    function get_rpc_request_id()
+    {
+        if (Context::has(ContextId::RPC_REQUEST_ID)) {
+            return Context::get(ContextId::RPC_REQUEST_ID);
+        }
+
+        $id = uniqid('rpc_');
+
+        Context::set(ContextId::RPC_REQUEST_ID, $id);
+
+        return $id;
     }
 }

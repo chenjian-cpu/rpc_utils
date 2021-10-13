@@ -13,11 +13,11 @@ namespace KkErpService\RpcUtils\Kernel\Listener;
 
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Framework\Event\BootApplication;
-use Hyperf\JsonRpc\DataFormatter;
-use Hyperf\JsonRpc\JsonRpcHttpTransporter;
-use Hyperf\JsonRpc\PathGenerator;
 use Hyperf\Rpc\ProtocolManager;
-use Hyperf\Utils\Packer\PhpSerializerPacker;
+use KkErpService\RpcUtils\Kernel\Component\ProtocolManager\DataFormatter;
+use KkErpService\RpcUtils\Kernel\Component\ProtocolManager\JsonRpcHttpTransporter;
+use KkErpService\RpcUtils\Kernel\Component\ProtocolManager\PathGenerator;
+use KkErpService\RpcUtils\Kernel\Component\ProtocolManager\PhpSerializerPacker;
 
 /**
  * 重写 jsonrpc-http 传输.

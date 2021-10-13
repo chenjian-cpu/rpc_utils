@@ -11,8 +11,6 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils;
 
-use KkErpService\RpcUtils\Kernel\Aspect\RpcRequestAspect;
-use KkErpService\RpcUtils\Kernel\Component\HttpServer;
 use KkErpService\RpcUtils\Kernel\Listener\RegisterProtocolListener;
 use KkErpService\RpcUtils\Kernel\Middlewares\JsonRpcHttpMiddleware;
 
@@ -22,7 +20,8 @@ class ConfigProvider
     {
         return [
             'dependencies' => [
-                \Hyperf\JsonRpc\HttpServer::class => HttpServer::class,
+                \Hyperf\JsonRpc\HttpServer::class      => \KkErpService\RpcUtils\Kernel\Component\HttpServer::class,
+                \Hyperf\RpcClient\ServiceClient::class => \KkErpService\RpcUtils\Kernel\Component\ServiceClient::class,
             ],
             'listeners' => [
                 RegisterProtocolListener::class => 0,
@@ -31,9 +30,6 @@ class ConfigProvider
                 'jsonrpc-http' => [
                     JsonRpcHttpMiddleware::class,
                 ],
-            ],
-            'aspects' => [
-                RpcRequestAspect::class,
             ],
         ];
     }
