@@ -11,7 +11,9 @@ declare(strict_types=1);
  */
 namespace KkErpService\RpcUtils\Structures\Response\ExportService;
 
-class ExportStatusDTO
+use KkErpService\RpcUtils\Structures\Request\ExportService\AbstractDTO;
+
+class ExportStatusDTO extends AbstractDTO
 {
     /**
      * 状态code.
@@ -24,4 +26,10 @@ class ExportStatusDTO
      * @var string
      */
     public $statusName;
+
+    /**
+     * 文件下载url.
+     * @var string
+     */
+    public $fileUrl;
 }
