@@ -17,7 +17,7 @@ use KkErpService\RpcUtils\Structures\Response\Terp\Order\DistributionOrder\Searc
 /**
  * 直接调拨单接口.
  */
-interface DistributionOrderInterface
+interface DistributionOrderRpcInterface
 {
     public function search(SearchRequestDTO $searchRequestDTO): SearchResponseDTO;
 }
