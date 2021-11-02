@@ -16,8 +16,8 @@ use KkErpService\RpcUtils\Structures\QueryDTO;
 /**
  * 直接调拨单搜索.
  *
- * @property array $ids    ID集
- * @property int   $status 推送状态
+ * @property array $ids        ID集
+ * @property int   $syncStatus 推送状态
  */
 class SearchRequestDTO extends QueryDTO
 {
