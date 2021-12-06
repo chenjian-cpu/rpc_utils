@@ -32,4 +32,10 @@ class ExportStatusDTO extends AbstractDTO
      * @var string
      */
     public $fileUrl;
+
+    /**
+     * 文件下载名.
+     * @var string
+     */
+    public $fileName;
 }
